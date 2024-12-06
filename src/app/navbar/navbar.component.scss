@@ -1,0 +1,30 @@
+nav {
+  overflow: hidden;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  border-bottom: black solid 1px;
+  ul {
+    padding: 15px;
+    li {
+      display: inline;
+      margin: 2px;
+      button {
+        border-radius: 2px;
+        background-color: white;
+        padding: 1ex 1em;
+        border: 0;
+        border-bottom: 1px solid black;
+      }
+      button:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+      }
+    }
+    li:first-child {
+      margin-right: 5em;
+    }
+  }
+}
+
+
