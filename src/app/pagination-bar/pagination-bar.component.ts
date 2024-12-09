@@ -17,14 +17,14 @@ export class PaginationBarComponent {
   }
 
   goToPreviousPage() {
-    if (this.currentPage == 0) {
+    if (this.isNotPossibleToDisplayPreviousPage()) {
       return;
     }
     this.changePage(this.currentPage - 1);
   }
 
   goToNextPage() {
-    if (this.currentPage + 1 >= this.totalPages) {
+    if (this.isNotPossibleToDisplayNextPage()) {
       return;
     }
     this.changePage(this.currentPage + 1);
@@ -33,6 +33,16 @@ export class PaginationBarComponent {
   goToLastPage() {
     this.changePage(this.totalPages - 1);
   }
+
+  isNotPossibleToDisplayPreviousPage() {
+    return this.currentPage == 0;
+  }
+
+  isNotPossibleToDisplayNextPage() {
+    return this.currentPage + 1 >= this.totalPages;
+  }
+
+
 
   private changePage(value: number) {
     this.changePageEvent.emit(value);
