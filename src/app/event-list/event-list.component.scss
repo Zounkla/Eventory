@@ -1,20 +1,20 @@
-#event {
+.event {
   border: 1px solid black;
   margin-inline: 2rem;
   margin-top: 1.5rem;
 }
 
-#topEvent, #bottomEvent {
+.topEvent, .bottomEvent {
   padding-inline: 1rem;
   display: flex;
   justify-content: space-between;
 }
 
-#beginDate {
+.beginDate {
   text-align: right;
 }
 
-#endDate {
+.endDate {
   text-align: right;
 }
 
