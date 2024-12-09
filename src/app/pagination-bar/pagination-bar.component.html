@@ -1,7 +1,11 @@
 <div id="paginationBar">
-  <button type="button" (click)="goToFirstPage()"> << </button>
-  <button type="button" [disabled]="isNotPossibleToDisplayPreviousPage()" (click)="goToPreviousPage()"> < </button>
-  <p> Page {{currentPage + 1}} of {{totalPages}}</p>
-  <button type="button" [disabled]="isNotPossibleToDisplayNextPage()" (click)="goToNextPage()"> > </button>
-  <button type="button" (click)="goToLastPage()"> >> </button>
+  <div id="previous">
+    <button type="button" id="first" (click)="goToFirstPage()"> << </button>
+    <button type="button" [disabled]="isNotPossibleToDisplayPreviousPage()" (click)="goToPreviousPage()"> < </button>
+  </div>
+  <p id="pageInfo"> Page {{currentPage + 1}} of {{totalPages}}</p>
+  <div id="next">
+    <button type="button" [disabled]="isNotPossibleToDisplayNextPage()" (click)="goToNextPage()"> > </button>
+    <button type="button" id="last" (click)="goToLastPage()"> >> </button>
+  </div>
 </div>
