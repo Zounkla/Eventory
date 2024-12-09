@@ -8,14 +8,19 @@
   <p id="endDate">
     To {{event?.endDate}}
   </p>
-  @if (event?.artists?.length > 0) {
+  @if ((event?.artists?.length ?? 0) > 0) {
     <div id="artists">
       <p>Featuring: <p>
-      @for (artist of event?.artists; track artist?.id) {
+      @for (artist of event?.artists; track $index) {
         <p class="artist">
           {{artist.label}}
         </p>
       }
     </div>
   }
+</div>
+<div id="delete">
+  <button id='trash' (click)="deleteEvent()">
+    <img ngSrc="/assets/trash-icon.svg" alt="trash" height="50" width="50"/>
+  </button>
 </div>
