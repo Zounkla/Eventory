@@ -1,6 +1,6 @@
 <div id="events">
   @for (event of eventList; track event.id) {
-     <div id="event">
+     <div id="event" [routerLink]="['/events', event.id]">
        <div id="topEvent">
          <p id="eventName">{{ event.label}}</p>
          <p id="beginDate">From {{event.startDate}}</p>
