@@ -9,7 +9,7 @@ export class EventService {
 
   constructor(private http:HttpClient) { }
 
-  getEvents() {
-    return this.http.get<EventList>("http://localhost:8080/events")
+  getEvents(pageNumber: number) {
+    return this.http.get<EventList>("http://localhost:8080/events?page=" + pageNumber + "&size=10");
   }
 }
