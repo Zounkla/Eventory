@@ -1,3 +1,14 @@
- @for (event of eventList; track event.label) {
-   <p>{{ event.label}}</p>
- }
+<div id="events">
+  @for (event of eventList; track event.id) {
+     <div id="event">
+       <div id="topEvent">
+         <p id="eventName">{{ event.label}}</p>
+         <p id="beginDate"> {{event.startDate}}</p>
+       </div>
+       <div id="bottomEvent">
+         <p id="artists"> Featuring {{event.artists.length}} artist(s) including: {{event.artists.at(0)?.label}}</p>
+         <p id="endDate"> {{event.endDate}}</p>
+       </div>
+     </div>
+   }
+</div>
