@@ -1,7 +1,7 @@
 #event {
   border: 1px solid black;
   margin-inline: 2rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 #topEvent, #bottomEvent {
@@ -22,5 +22,4 @@
   display: grid;
   grid-template-rows: repeat(5, min-content);
   grid-auto-flow: column;
-  margin-top: 1rem;
 }
