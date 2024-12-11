@@ -1,0 +1,26 @@
+<div>
+  <div>
+    <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="label">Name</label>
+        <input type="text" formControlName="label"
+               id="label"
+               name="label"
+               placeholder="Name of the event"/>
+      </div>
+      <div>
+        <label for="startDate">Begin date</label>
+        <input type="date" formControlName="startDate"
+                id="startDate"
+                name="startDate"/>
+      </div>
+      <div>
+        <label for="endDate">Begin date</label>
+        <input type="date" formControlName="endDate"
+               id="endDate"
+               name="endDate"/>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
