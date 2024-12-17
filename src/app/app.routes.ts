@@ -3,6 +3,7 @@ import {EventListComponent} from './event-list/event-list.component';
 import {EventComponent} from './event/event.component';
 import {ArtistListComponent} from './artist-list/artist-list.component';
 import {EventCreationFormComponent} from './event-creation-form/event-creation-form.component';
+import {ArtistCreationFormComponent} from './artist-creation-form/artist-creation-form.component';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: "events/:id",
     component: EventComponent
+  },
+  {
+    path: "createArtist",
+    component: ArtistCreationFormComponent
   }
 ];

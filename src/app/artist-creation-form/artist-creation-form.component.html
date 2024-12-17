@@ -1,0 +1,16 @@
+<div>
+  <div>
+    <form [formGroup]="artistForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="label">Name</label>
+        <input type="text"
+               formControlName="label"
+               id="label"
+               name="label"
+               placeholder="Name of the artist"
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
