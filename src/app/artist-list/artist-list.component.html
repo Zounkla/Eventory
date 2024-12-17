@@ -1,0 +1,19 @@
+<div id="artists">
+  @for (artist of artistList; track artist.id) {
+    <div class="artist" [routerLink]="['/artists', artist.id]">
+      <div class="topArtist">
+        <p class="artistName">{{ artist.label }}</p>
+      </div>
+      <div class="bottomArtist">
+        <p class="events">
+          @if (artist.events.length > 0) {
+            Next events :
+          }
+        </p>
+      </div>
+    </div>
+  }
+</div>
+<button [routerLink]="['/createArtist']" value="Create Artist">Create artist</button>
+<app-pagination-bar [currentPage]="pageNumber" (changePageEvent)="changePage($event)" [totalPages]="totalPages"></app-pagination-bar>
+
