@@ -7,7 +7,7 @@
       <div class="bottomArtist">
         <p class="events">
           @if (artist.events.length > 0) {
-            Next events :
+            Next events : {{ artist.events.at(0)?.label }}
           }
         </p>
       </div>
