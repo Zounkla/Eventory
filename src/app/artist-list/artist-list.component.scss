@@ -1,9 +1,9 @@
 .artist {
-  border: 1px solid #FEB47B;
+  border: 1px solid #E07B39;
   margin-inline: 2rem;
   border-radius: 30px;
   margin-top: 0.75rem;
-  background-color: #351C4D;
+  background-color: #F7D5A1;
 }
 
 .topArtist, .bottomArtist {
@@ -16,17 +16,14 @@
   display: grid;
   grid-template-rows: repeat(5, min-content);
   grid-auto-flow: column;
-  background-color: #765285;
 }
 
 .artistName {
-  color: #FF7E5F;
   font-size: 1.25rem;
   font-weight: bold;
 }
 
 .events {
   font-size: 1rem;
-  color: #F5AB99;
   font-weight: bold;
 }

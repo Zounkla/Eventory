@@ -1,9 +1,9 @@
 .event {
-  border: 1px solid #FEB47B;
+  border: 1px solid #E07B39 ;
   margin-inline: 2rem;
   border-radius: 30px;
   margin-top: 0.75rem;
-  background-color: #351C4D;
+  background-color: #F7D5A1 ;
 }
 
 .topEvent, .bottomEvent {
@@ -12,13 +12,8 @@
   justify-content: space-between;
 }
 
-.beginDate, .endDate, .eventName {
-  font-family: Snell Roundhand, cursive;
-}
-
 .beginDate, .endDate {
   font-size: 0.875rem;
-  color: #FEB47B;
   text-align: right;
 }
 
@@ -26,17 +21,14 @@
   display: grid;
   grid-template-rows: repeat(5, min-content);
   grid-auto-flow: column;
-  background-color: #765285;
 }
 
 .eventName {
-  color: #FF7E5F;
   font-size: 1.25rem;
   font-weight: bold;
 }
 
 .artists {
   font-size: 1rem;
-  color: #F5AB99;
   font-weight: bold;
 }
