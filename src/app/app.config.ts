@@ -1,10 +1,26 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  importProvidersFrom,
+  provideZoneChangeDetection
+} from '@angular/core';
 import {provideRouter, withComponentInputBinding} from '@angular/router';
 
 import { routes } from './app.routes';
-import {provideHttpClient} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {PopupService} from './services/popup.service';
+import {HttpErrorInterceptor} from './config/HttpErrorInterceptor';
 
-export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes, withComponentInputBinding()),
-  provideHttpClient()]
+export const appConfig = {
+  providers: [
+    provideRouter(routes, withComponentInputBinding()),
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideHttpClient(withInterceptorsFromDi()),
+    importProvidersFrom([BrowserAnimationsModule]),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+      deps: [PopupService]
+    }
+  ]
 };
