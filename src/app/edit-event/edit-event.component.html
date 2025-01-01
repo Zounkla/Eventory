@@ -1,0 +1,38 @@
+<div class="container">
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="label">Name <span class="required">*</span></label>
+      <input type="text" formControlName="label"
+             id="label"
+             name="label"
+             placeholder="Name of the event"/>
+    </div>
+
+    <div>
+      <label for="startDate">Begin date <span class="required">*</span></label>
+      <input type="date" formControlName="startDate"
+             id="startDate"
+             name="startDate"/>
+    </div>
+
+    <div>
+      <label for="endDate">End date <span class="required">*</span></label>
+      <input type="date" formControlName="endDate"
+             id="endDate"
+             name="endDate"/>
+    </div>
+    @if ((event?.artists?.length ?? 0) > 0) {
+      <div id="artists">
+        <p>Featuring: <p>
+        @for (artist of event?.artists; track $index) {
+          <li class="artist">
+            {{artist.label}}
+            <!--TODO BOUTON POUR UNLINK-->
+          </li>
+        }
+      </div>
+    }
+    <!-- TODO BOUTON POUR AFFICHER LISTE DEROULANTE AVEC LISTE ARTISTES-->
+    <button type="submit" [disabled]="eventForm.invalid">Edit</button>
+  </form>
+</div>
