@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;           /* Hauteur de l'écran */
+  height: 100vh;
 }
 
 form {
@@ -75,4 +75,20 @@ button[type="submit"]:active {
   margin-top: 2rem;
   align-self: flex-start;
   font-size: 1.2rem;
+}
+
+.unlink {
+  margin-left: 1rem;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  transition: filter 0.3s ease;
+  &:hover {
+    filter: invert(19%) sepia(80%) saturate(1000%) hue-rotate(-30deg);
+  }
+}
+.artist {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

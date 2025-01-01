@@ -27,7 +27,7 @@
         @for (artist of event?.artists; track $index) {
           <li class="artist">
             {{artist.label}}
-            <!--TODO BOUTON POUR UNLINK-->
+            <img class="unlink" src="/assets/unlink.svg" alt="unlink artist" (click)="unlinkArtist(artist.id)">
           </li>
         }
       </div>
@@ -36,3 +36,4 @@
     <button type="submit" [disabled]="eventForm.invalid">Edit</button>
   </form>
 </div>
+<!-- TODO RAJOUTER BOUTON TOGGLE POUR REVENIR A LA PAGE DETAILS-->

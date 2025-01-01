@@ -25,6 +25,7 @@ export class EditEventComponent implements OnInit {
 
   ngOnInit() {
     this.event = history.state.event;
+    console.log(this.event?.id)
 
     this.eventForm = new FormGroup({
       label: new FormControl(this.event?.label || '', Validators.required),
@@ -66,5 +67,31 @@ export class EditEventComponent implements OnInit {
         this.router.navigate(["/events"])
       }
     );
+  }
+
+  unlinkArtist(artistId: number) {
+    if (this.event?.id == null) {
+      this.popupService.openError("Event not found")
+      return;
+    }
+    if (artistId == null) {
+      this.popupService.openError("Artist not found")
+      return;
+    }
+    this.eventService.unlinkArtist(this.event.id, artistId).subscribe(
+      () => {
+        this.popupService.openSuccess('Artist unlinked!')
+        this.loadEvent()
+      }
+    );
+  }
+
+  private loadEvent() {
+    if (this.event?.id == null) {
+      this.popupService.openError("Event not found")
+      return;
+    }
+    this.eventService.getEvent(this.event.id.toString()).subscribe(event => this.event = event)
+
   }
 }

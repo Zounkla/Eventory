@@ -45,6 +45,10 @@ export class EventService {
     return this.http.put<Event>(this.url + "/" + id, payload, {headers});
   }
 
+  unlinkArtist(eventId: number, artistId: number) {
+    return this.http.delete<Event>(this.url + "/" + eventId + "/artists/" + artistId);
+  }
+
   private formatDate(date: Date): string {
     let month = date.getMonth() + 1;
     let day = date.getDate();
