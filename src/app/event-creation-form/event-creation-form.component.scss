@@ -65,3 +65,8 @@ button[type="submit"]:hover {
 button[type="submit"]:active {
   transform: translateY(0);
 }
+
+.required {
+  color: red;
+  font-weight: bold;
+}
