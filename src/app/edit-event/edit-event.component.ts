@@ -4,12 +4,14 @@ import {PopupService} from '../services/popup.service';
 import {EventService} from '../services/event.service';
 import {Router} from '@angular/router';
 import {Event} from '../models/event.model';
+import {Artist} from '../models/artist.model';
+import {ArtistService} from '../services/artist.service';
 
 @Component({
   selector: 'app-edit-event',
   imports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './edit-event.component.html',
   standalone: true,
@@ -17,22 +19,25 @@ import {Event} from '../models/event.model';
 })
 export class EditEventComponent implements OnInit {
   @Input() event: Event | null = null;
+  isAddingArtist = false;
   eventForm!: FormGroup;
+  artists: Artist[] = [];
 
   constructor(private popupService: PopupService, private eventService: EventService,
-              private router: Router) { }
+              private router: Router, private artistService: ArtistService) { }
 
 
   ngOnInit() {
     this.event = history.state.event;
-    console.log(this.event?.id)
 
     this.eventForm = new FormGroup({
       label: new FormControl(this.event?.label || '', Validators.required),
       startDate: new FormControl(this.event?.startDate || '', Validators.required),
       endDate: new FormControl(this.event?.endDate || '', Validators.required),
-      artists: new FormControl(this.event?.artists)
+      artists: new FormControl(this.event?.artists),
+      selectedArtist: new FormControl(null)
     });
+
   }
 
   onSubmit() {
@@ -85,6 +90,55 @@ export class EditEventComponent implements OnInit {
       }
     );
   }
+
+  linkArtist() {
+    if (this.event == null) {
+      this.popupService.openError("Event not found")
+      return;
+    }
+    const selectedArtist = this.eventForm.get('selectedArtist')?.value;
+    if (!selectedArtist) {
+      this.popupService.openError('Artist not found.');
+      return;
+    }
+    this.eventService.linkEventToArtist(this.event.id, selectedArtist.id).subscribe({
+        next: () => {
+          this.loadEvent()
+          this.isAddingArtist = false;
+        }
+      }
+    )
+  }
+
+  toggleAddArtist() {
+    this.isAddingArtist = true;
+    this.loadArtists();
+  }
+
+  cancelLink() {
+    this.isAddingArtist = false;
+  }
+
+  private loadArtists() {
+    let pageNumber = 0;
+    let allArtists: Artist[] = [];
+    const fetchPage = () => {
+      this.artistService.getArtists(pageNumber).subscribe(
+        artists => {
+          if (artists.content.length == 0) {
+            this.artists = allArtists;
+            return;
+          }
+          allArtists = allArtists.concat(artists.content);
+          pageNumber++;
+          fetchPage();
+        }
+      );
+    }
+    fetchPage()
+  }
+
+
 
   private loadEvent() {
     if (this.event?.id == null) {

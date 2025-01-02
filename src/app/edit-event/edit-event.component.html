@@ -32,7 +32,25 @@
         }
       </div>
     }
-    <!-- TODO BOUTON POUR AFFICHER LISTE DEROULANTE AVEC LISTE ARTISTES-->
+    @if (isAddingArtist) {
+      <div class="add-artist">
+        <label for="artistSelect">Select an Artist:</label>
+        <select id="artistSelect" formControlName="selectedArtist" class="artist-select">
+          <option [ngValue]="null" disabled selected>-- Select an Artist --</option>
+          @for (artist of artists; track artist.id) {
+            <option [ngValue]="artist">{{ artist.label }}</option>
+          }
+        </select>
+        <div class="button-group">
+          <button type="button" (click)="linkArtist()" class="button-link">Link</button>
+          <button type="button" (click)="cancelLink()" class="button-cancel">Cancel</button>
+        </div>
+      </div>
+    } @else {
+      <div class="add-artist-button">
+        <button type="button" (click)="toggleAddArtist()" class="button-link-artist">Link Artist</button>
+      </div>
+    }
     <button type="submit" [disabled]="eventForm.invalid">Edit</button>
   </form>
 </div>

@@ -45,6 +45,10 @@ export class EventService {
     return this.http.put<Event>(this.url + "/" + id, payload, {headers});
   }
 
+  linkEventToArtist(eventId: number, artistId: number) {
+    return this.http.post<Event>(this.url + "/" + eventId + "/artists/" + artistId, {});
+  }
+
   unlinkArtist(eventId: number, artistId: number) {
     return this.http.delete<Event>(this.url + "/" + eventId + "/artists/" + artistId);
   }
