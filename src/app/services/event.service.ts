@@ -35,6 +35,24 @@ export class EventService {
     return this.http.post<Event>(this.url, payload, {headers});
   }
 
+  editEvent(id: number | null, label: string, startDate: Date, endDate: Date) {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    let payload = {
+      label: label,
+      startDate: this.formatDate(startDate),
+      endDate: this.formatDate(endDate)
+    };
+    return this.http.put<Event>(this.url + "/" + id, payload, {headers});
+  }
+
+  linkEventToArtist(eventId: number, artistId: number) {
+    return this.http.post<Event>(this.url + "/" + eventId + "/artists/" + artistId, {});
+  }
+
+  unlinkArtist(eventId: number, artistId: number) {
+    return this.http.delete<Event>(this.url + "/" + eventId + "/artists/" + artistId);
+  }
+
   private formatDate(date: Date): string {
     let month = date.getMonth() + 1;
     let day = date.getDate();

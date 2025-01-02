@@ -4,11 +4,13 @@ import {EventService} from '../services/event.service';
 import {Router} from '@angular/router';
 import {NgOptimizedImage} from '@angular/common';
 import {PopupService} from '../services/popup.service';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-event',
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    FormsModule
   ],
   templateUrl: './event.component.html',
   standalone: true,
@@ -18,7 +20,6 @@ export class EventComponent implements OnInit {
 
   @Input() id: string = "";
   event: Event | null = null;
-
   constructor(private service: EventService, private router: Router,
               private popupService: PopupService){}
 
@@ -32,5 +33,9 @@ export class EventComponent implements OnInit {
         this.router.navigate(["/events"])
       }
     );
+  }
+
+  toggleEdit() {
+    this.router.navigate(['/edit-event'], { state: { event: this.event } });
   }
 }

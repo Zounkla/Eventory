@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;           /* Hauteur de l'écran */
+  height: 100vh;
 }
 
 form {
@@ -64,4 +64,9 @@ button[type="submit"]:hover {
 
 button[type="submit"]:active {
   transform: translateY(0);
+}
+
+.required {
+  color: red;
+  font-weight: bold;
 }

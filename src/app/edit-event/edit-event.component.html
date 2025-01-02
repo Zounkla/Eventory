@@ -1,0 +1,63 @@
+<div class="container">
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="label">Name <span class="required">*</span></label>
+      <input type="text" formControlName="label"
+             id="label"
+             name="label"
+             placeholder="Name of the event"/>
+    </div>
+
+    <div>
+      <label for="startDate">Begin date <span class="required">*</span></label>
+      <input type="date" formControlName="startDate"
+             id="startDate"
+             name="startDate"/>
+    </div>
+
+    <div>
+      <label for="endDate">End date <span class="required">*</span></label>
+      <input type="date" formControlName="endDate"
+             id="endDate"
+             name="endDate"/>
+    </div>
+    @if ((event?.artists?.length ?? 0) > 0) {
+      <div id="artists">
+        <p>Featuring: <p>
+        @for (artist of event?.artists; track $index) {
+          <li class="artist">
+            {{artist.label}}
+            <img class="unlink" src="/assets/unlink.svg" alt="unlink artist" (click)="unlinkArtist(artist.id)">
+          </li>
+        }
+      </div>
+    }
+    @if (isAddingArtist) {
+      <div class="add-artist">
+        <label for="artistSelect">Select an Artist:</label>
+        <select id="artistSelect" formControlName="selectedArtist" class="artist-select">
+          <option [ngValue]="null" disabled selected>-- Select an Artist --</option>
+          @for (artist of artists; track artist.id) {
+            <option [ngValue]="artist">{{ artist.label }}</option>
+          }
+        </select>
+        <div class="button-group">
+          <button type="button" (click)="linkArtist()" class="button-link">Link</button>
+          <button type="button" (click)="cancelLink()" class="button-cancel">Cancel</button>
+        </div>
+      </div>
+    } @else {
+      <div class="add-artist-button">
+        <button type="button" (click)="toggleAddArtist()" class="button-link-artist">Link Artist</button>
+      </div>
+    }
+    <button type="submit" [disabled]="eventForm.invalid">Edit</button>
+  </form>
+</div>
+<div id="slideButtonContainer">
+  <label class="switch">
+    <input type="checkbox" (change)="toggleDetails()" checked>
+    <span class="slider"></span>
+  </label>
+  <p>Edit</p>
+</div>

@@ -11,6 +11,7 @@ import {PaginationBarComponent} from '../pagination-bar/pagination-bar.component
     PaginationBarComponent
   ],
   templateUrl: './artist-list.component.html',
+  standalone: true,
   styleUrl: './artist-list.component.scss'
 })
 export class ArtistListComponent implements OnInit {
