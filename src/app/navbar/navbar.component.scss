@@ -1,7 +1,8 @@
 nav {
   overflow: hidden;
-  background-color: #fff;
   position: sticky;
+  background-color: #4B3F26;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   top: 0;
   width: 100%;
   border-bottom: black solid 1px;
@@ -14,14 +15,23 @@ nav {
       display: inline;
       margin: 2px;
       button {
-        border-radius: 2px;
-        background-color: white;
-        padding: 1ex 1em;
-        border: 0;
-        border-bottom: 1px solid black;
+        padding: 0.8em 1.5em;
+        color: #FFEBCC;
+        font-size: 1.3em;
+        background-color: #4B3F26;
+        border: 2px solid #FFEBCC;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
       }
       button:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        background-color: #6E5B39;
+        transform: translateY(-2px);
+      }
+      button:active {
+        transform: translateY(0);
       }
     }
     li:first-child {
@@ -34,4 +44,11 @@ nav {
   }
 }
 
+.create-event-button {
+  background-color: #E07B39;
+  border: 2px solid #E07B39;
+}
 
+.create-event-button:hover {
+  background-color: #C66A2F;
+}
