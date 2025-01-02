@@ -36,7 +36,6 @@ export class EventComponent implements OnInit {
   }
 
   toggleEdit() {
-    console.log(this.event)
     this.router.navigate(['/edit-event'], { state: { event: this.event } });
   }
 }

@@ -119,6 +119,10 @@ export class EditEventComponent implements OnInit {
     this.isAddingArtist = false;
   }
 
+  toggleDetails() {
+    this.router.navigate(['/events/' + this.event?.id]);
+  }
+
   private loadArtists() {
     let pageNumber = 0;
     let allArtists: Artist[] = [];

@@ -54,4 +54,10 @@
     <button type="submit" [disabled]="eventForm.invalid">Edit</button>
   </form>
 </div>
-<!-- TODO RAJOUTER BOUTON TOGGLE POUR REVENIR A LA PAGE DETAILS-->
+<div id="slideButtonContainer">
+  <label class="switch">
+    <input type="checkbox" (change)="toggleDetails()" checked>
+    <span class="slider"></span>
+  </label>
+  <p>Edit</p>
+</div>
