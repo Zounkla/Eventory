@@ -24,7 +24,6 @@
   grid-auto-flow: column;
   height: calc(100vh - 100px);
   padding-bottom: 5%;
-  overflow-y: auto;
   flex-grow: 1;
 }
 
@@ -51,6 +50,7 @@ app-pagination-bar {
 
 @media (max-width: 1024px) {
   #events {
+    height: 100vh;
     padding-bottom: 5%;
     margin-bottom: 50px;
   }
