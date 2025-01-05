@@ -58,6 +58,10 @@ nav {
   font-size: 200%;
   font-weight: bold;
   color: white;
+  a {
+    text-decoration: none;
+    color: white;
+  }
 }
 
 @media (max-width: 768px) {

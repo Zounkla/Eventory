@@ -6,8 +6,13 @@ import {EventCreationFormComponent} from './event-creation-form/event-creation-f
 import {ArtistCreationFormComponent} from './artist-creation-form/artist-creation-form.component';
 import {ArtistComponent} from './artist/artist.component';
 import {EditEventComponent} from './edit-event/edit-event.component';
+import {HomeComponent} from './home/home.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
   {
     path: "events",
     component: EventListComponent
