@@ -9,18 +9,23 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   constructor(private popupService: PopupService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 400) {
-          this.popupService.openError('Invalid request');
-        } else if (error.status === 404) {
-          this.popupService.openError('Not Found');
-        } else if (error.status === 500) {
-          this.popupService.openError('Server Error');
-        }
-        return throwError(() => error);
-      })
-    );
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    return next.handle(request)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          let errorMessage = '';
+          if (error.error instanceof ErrorEvent) {
+            errorMessage = `Error: ${error.error.message}`;
+            this.popupService.openWarning(error.error.message)
+          } else {
+            errorMessage = `Error Status: ${error.status}\nMessage: ${error.message}`;
+            this.popupService.openError(error.message)
+          }
+          return throwError(() => errorMessage);
+        })
+      )
   }
 }
