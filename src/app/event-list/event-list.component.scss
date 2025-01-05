@@ -38,9 +38,53 @@
 }
 
 app-pagination-bar {
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  height: 8%;
+  height: auto;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+  app-pagination-bar {
+    position: sticky;
+    bottom: 0;
+    padding: 0.8rem 0;
+  }
+
+  #events {
+    padding-bottom: 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  #paginationBar {
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 1rem;
+  }
+
+  #paginationBar button {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+    margin: 0.3rem;
+  }
+
+  #pageInfo {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
+  app-pagination-bar {
+    position: sticky;
+    bottom: 0;
+    padding: 0.8rem 0;
+  }
+
+  #events {
+    padding-bottom: 15%;
+  }
+}
