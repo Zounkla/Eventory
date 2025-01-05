@@ -10,6 +10,7 @@
   padding-inline: 1rem;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .beginDate, .endDate {
@@ -42,3 +43,4 @@ app-pagination-bar {
   height: 8%;
   width: 100%;
 }
+
