@@ -32,4 +32,12 @@ export class ArtistService {
     };
     return this.http.post<Artist>(this.url, payload, {headers})
   }
+
+  editArtist(id: number | null, label: string) {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    let payload = {
+      label: label,
+    }
+    return this.http.put<Artist>(this.url + "/" + id, payload, {headers})
+  }
 }

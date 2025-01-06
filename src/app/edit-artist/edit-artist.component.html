@@ -1,0 +1,19 @@
+<div class="container">
+  <form [formGroup]="artistForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="label">Name <span class="required">*</span></label>
+      <input type="text" formControlName="label"
+             id="label"
+             name="label"
+             placeholder="Name of the artist"
+      />
+    </div>
+  </form>
+</div>
+<div id="slideButtonContainer">
+  <label class="switch">
+    <input type="checkbox" (change)="toggleDetails()" checked>
+    <span class="slider"></span>
+  </label>
+  <p>Edit</p>
+</div>
