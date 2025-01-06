@@ -16,7 +16,8 @@ import {PaginationBarComponent} from '../pagination-bar/pagination-bar.component
 })
 export class ArtistListComponent implements OnInit {
 
-  artistList: Artist[] = []
+  artistList: Artist[] = [];
+  filteredArtistList: Artist[] = [];
   pageNumber: number = 0;
   totalPages: number = 0;
 
@@ -31,10 +32,21 @@ export class ArtistListComponent implements OnInit {
     this.reloadArtists();
   }
 
+  filterArtist(value: string) {
+    if(!value) {
+      this.filteredArtistList = this.artistList;
+      return;
+    }
+    this.filteredArtistList = this.artistList.filter(artist =>
+      artist?.label.toLowerCase().includes(value.toLowerCase())
+    );
+  }
+
   protected reloadArtists() {
     this.service.getArtists(this.pageNumber).subscribe(
       data => {
         this.artistList = data.content;
+        this.filteredArtistList = this.artistList;
         this.totalPages = data.totalPages;
       }
     )
