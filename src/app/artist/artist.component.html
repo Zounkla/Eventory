@@ -1,20 +1,29 @@
-<div id="artist">
-  <p id="label">
-    {{artist?.label}}
-  </p>
-  @if ((artist?.events?.length ?? 0) > 0) {
-    <div>
-      <p>Next events</p>
-      @for (event of artist?.events; track $index) {
-        <p class="event">
-          {{event.label}}
-        </p>
-      }
-    </div>
-  }
+<div id="container">
+  <div id="artist">
+    <p id="label">
+      {{artist?.label}}
+    </p>
+    @if ((artist?.events?.length ?? 0) > 0) {
+      <div>
+        <p>Next events</p>
+        @for (event of artist?.events; track $index) {
+          <p class="event">
+            {{event.label}}
+          </p>
+        }
+      </div>
+    }
+  </div>
+  <div id="delete">
+    <button id="trash" (click)="deleteArtist()">
+      <img ngSrc="/assets/trash-icon.svg" alt="trash" height="50" width="50" />
+    </button>
+  </div>
 </div>
-<div id="delete">
-  <button id="trash" (click)="deleteArtist()">
-    <img ngSrc="/assets/trash-icon.svg" alt="trash" height="50" width="50" />
-  </button>
+<div id="slideButtonContainer">
+  <label class="switch">
+    <input type="checkbox" (change)="toggleEdit()">
+    <span class="slider"></span>
+  </label>
+  <p>Edit</p>
 </div>

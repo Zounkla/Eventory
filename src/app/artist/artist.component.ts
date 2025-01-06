@@ -33,4 +33,8 @@ export class ArtistComponent implements OnInit {
       () => this.router.navigate(['/artists'])
     )
   }
+
+  async toggleEdit() {
+    await this.router.navigate(['/edit-artist'], { state: { artist: this.artist}})
+  }
 }
