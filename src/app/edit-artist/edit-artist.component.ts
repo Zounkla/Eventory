@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Artist} from '../models/artist.model';
+import {Event} from '../models/event.model';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PopupService} from '../services/popup.service';
 import {ArtistService} from '../services/artist.service';
@@ -51,7 +52,77 @@ export class EditArtistComponent implements OnInit {
     )
   }
 
+  unlinkEvent(eventId: number) {
+    if (this.artist?.id == null) {
+      this.popupService.openError("Artist not found");
+      return;
+    }
+    if (eventId == null) {
+      this.popupService.openError("Event not found");
+    }
+    this.eventService.unlinkArtist(eventId, this.artist.id).subscribe(
+      () => {
+        this.popupService.openSuccess("Event unlinked!");
+        this.loadArtist();
+      }
+    )
+  }
+
+  linkEvent() {
+    if(this.artist == null) {
+      this.popupService.openError("Artist not found");
+      return;
+    }
+    const selectedEvent = this.artistForm.get('selectedEvent')?.value;
+    if(!selectedEvent) {
+      this.popupService.openError("Event not found");
+      return;
+    }
+    this.eventService.linkEventToArtist(selectedEvent.id, this.artist.id).subscribe({
+      next: () => {
+        this.loadArtist();
+        this.isAddingEvent = true;
+      }
+    })
+  }
+
+  toggleAddEvent() {
+    this.isAddingEvent = true;
+    this.loadEvents();
+  }
+
+  cancelLink() {
+    this.isAddingEvent = false;
+  }
+
   toggleDetails() {
     this.router.navigate(['/artists/' + this.artist?.id]);
+  }
+
+  private loadEvents() {
+    let pageNumber = 0;
+    let allEvents: Event[] = [];
+    const fetchPage = () => {
+      this.eventService.getEvents(pageNumber).subscribe(
+        events => {
+          if (events.content.length == 0) {
+            this.events = allEvents;
+            return;
+          }
+          allEvents = allEvents.concat(events.content);
+          pageNumber++;
+          fetchPage();
+        }
+      );
+    }
+    fetchPage();
+  }
+
+  private loadArtist() {
+    if (this.artist?.id == null) {
+      this.popupService.openError("Artist not found");
+      return;
+    }
+    this.artistService.getArtist(this.artist.id.toString()).subscribe(artist => this.artist = artist);
   }
 }

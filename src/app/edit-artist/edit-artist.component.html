@@ -8,6 +8,37 @@
              placeholder="Name of the artist"
       />
     </div>
+    @if ((artist?.events?.length ?? 0) > 0) {
+      <div id="events">
+        <p>Next events : </p>
+        @for (event of artist?.events; track $index) {
+          <li class="event">
+            {{event.label}}
+            <img class="unlink" src="/assets/unlink.svg" alt="unlink event" (click)="unlinkEvent(event.id)">
+          </li>
+        }
+      </div>
+    }
+    @if (isAddingEvent) {
+      <div class="add-event">
+        <label for="eventSelect">Select an Event:</label>
+        <select id="eventSelect" formControlName="selectedEvent" class="event-select">
+          <option [ngValue]="null" disabled selected>-- Select an Event --</option>
+          @for (event of events; track event.id) {
+            <option [ngValue]="event">{{ event.label }}</option>
+          }
+        </select>
+        <div class="button-group">
+          <button type="button" (click)="linkEvent()" class="button-link">Link</button>
+          <button type="button" (click)="cancelLink()" class="button-cancel">Cancel</button>
+        </div>
+      </div>
+    } @else {
+      <div class="add-artist-button">
+        <button type="button" (click)="toggleAddEvent()" class="button-link-artist">Link Event</button>
+      </div>
+    }
+    <button type="submit" [disabled]="artistForm.invalid">Edit</button>
   </form>
 </div>
 <div id="slideButtonContainer">
