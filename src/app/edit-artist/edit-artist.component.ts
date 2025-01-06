@@ -43,7 +43,10 @@ export class EditArtistComponent implements OnInit {
       return;
     }
     let label = this.artistForm.value.label ?? "";
-
+    if (label == null || label.length < 3) {
+      this.popupService.openWarning('Label invalid, too short');
+      return;
+    }
     this.artistService.editArtist(this.artist.id, label).subscribe(
       () => {
         this.popupService.openSuccess("Artist has been updated!");
