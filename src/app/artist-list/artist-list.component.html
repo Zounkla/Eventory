@@ -1,5 +1,5 @@
+<input id="search" type="text" placeholder="Search an artist" #filter (input)="filterArtist(filter.value)">
 <div id="artists">
-  <input type="text" placeholder="Search an artist" #filter (input)="filterArtist(filter.value)">
   @for (artist of filteredArtistList; track artist.id) {
     <div class="artist" [routerLink]="['/artists', artist.id]">
       <div class="topArtist">

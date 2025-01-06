@@ -39,6 +39,13 @@ app-pagination-bar {
   box-sizing: border-box;
 }
 
+#search {
+  margin: 0.5rem 0.5rem 0 2rem;
+  width: 25%;
+  height: 3rem;
+  border-radius: 30px;
+}
+
 @media (max-width: 1024px) {
   #artists {
     height: 100vh;
