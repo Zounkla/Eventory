@@ -83,6 +83,7 @@ export class EditArtistComponent implements OnInit {
     }
     this.eventService.linkEventToArtist(selectedEvent.id, this.artist.id).subscribe({
       next: () => {
+        this.popupService.openSuccess("Event linked!");
         this.loadArtist();
         this.isAddingEvent = true;
       }
