@@ -28,7 +28,7 @@ export class ArtistCreationFormComponent {
   onSubmit() {
     let label = this.artistForm.value.label ?? "";
     if (label == null || label.length < 3) {
-      this.popupService.openWarning('Label invalid, too short');
+      this.popupService.openWarning('Name invalid, too short');
       return;
     }
     this.artistService.createArtist(label).subscribe(
